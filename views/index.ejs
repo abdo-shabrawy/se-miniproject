@@ -12,6 +12,9 @@
       <% if (user.bio) { %>
         <div class="panel-body"><%= user.bio %></div>
         <% } %>
+        <% if (user.realName) { %>
+          <h3>Student Name: <%= user.realName %> </h3>
+        <% } %>
         <% if (user.profilePicture) { %>
           <img src="/<%= user.profilePicture %>">
         <% } %>
