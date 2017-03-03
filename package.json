@@ -1,0 +1,25 @@
+{
+  "name": "Student-Portfolios",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "latest",
+    "bson": "latest",
+    "connect-flash": "latest",
+    "cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "fs": "0.0.1-security",
+    "mongoose": "latest",
+    "multer": "^1.3.0",
+    "passport": "latest",
+    "passport-local": "latest",
+    "path": "^0.12.7"
+
+  }
+
+}

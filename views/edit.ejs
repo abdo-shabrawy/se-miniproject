@@ -1,0 +1,25 @@
+<% include _header %>
+
+<h1>Edit your profile</h1>
+
+<form action="/edit" enctype="multipart/form-data" method="post">
+
+  <h4>Display Name:</h4>
+  <input name="displayname" type="text" class="form-control"
+  placeholder="Display name"
+  value="<%= currentUser.displayName || "" %>">
+
+  <h4>Profile Picture:</h4>
+  <input  name="profile" type="file" class="form-control" accept="image/*">
+
+  <h4>Bio:</h4>
+  <textarea name="bio" class="form-control"
+  placeholder="Tell us about yourself!"><%= currentUser.bio || "" %></textarea>
+  <input type="submit" value="Update" class="btn
+  btn-primary btn-block">
+
+
+
+</form>
+
+<% include _footer %>

@@ -1,0 +1,27 @@
+<% include _header %>
+
+<h1>Add work to your portfolio</h1>
+
+<form name="myForm" action="/addwork" enctype="multipart/form-data" method="post">
+
+  <h4>Add a link: </h4>
+    <input  name="link" type="String" class="form-control" >
+    <h4>or</h4>
+  <h4>Upload a screenshot:</h4>
+  <input  name="screenshot" type="file" class="form-control" accept="image/*" >
+    <input type="button" value="Submit" class="btn btn-primary btn-block" onclick="validateAndSend()">
+</form>
+    <script>
+        function validateAndSend() {
+            if (myForm.link.value == '' && myForm.screenshot.value == '') {
+                alert('You have to submit atleast 1 item.');
+                return false;
+            }
+            else {
+                myForm.submit();
+            }
+        }
+    </script>
+
+
+<% include _footer %>

@@ -1,0 +1,37 @@
+<% include _header %>
+
+<h1>Create your portfolio</h1>
+<h3>if you're new to this, don't worry, all you need to do is upload a screenshot
+or source code of one of your previous works and you're good to go!</h3>
+
+<form action="/createfolio" enctype="multipart/form-data" method="post">
+
+  <h4>Name (Real name, No aliases please): </h4>
+    <input  name="rname" type="String" class="form-control" required>
+
+
+
+  <h4>upload a profile picture (optional):</h4>
+  <input  name="profile" type="file" class="form-control" accept="image/*">
+
+
+  <h4>Add a link: </h4>
+    <input  name="link" type="String" class="form-control" >
+    <h4>or</h4>
+  <h4>Upload a screenshot:</h4>
+  <input  name="screenshot" type="file" class="form-control" accept="image/*" >
+    <input type="submit" value="Submit" class="btn btn-primary btn-block" onclick="validateAndSend()">
+</form>
+<script>
+    function validateAndSend() {
+        if (myForm.link.value == '' && myForm.screenshot.value == '') {
+            alert('You have to submit atleast 1 item.');
+            return false;
+        }
+        else {
+            myForm.submit();
+        }
+    }
+</script>
+
+<% include _footer %>

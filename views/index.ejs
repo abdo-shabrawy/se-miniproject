@@ -1,0 +1,82 @@
+<% include _header %>
+  <h1>You have found the website where students share their works for others to view! Congrats!</h1>
+
+<%if (totalStudents>0){%>
+  <% students.forEach(function(user) { %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a href="/users/<%= user.username %>">
+          <%= user.name() %>
+        </a>
+      </div>
+      <% if (user.bio) { %>
+        <div class="panel-body"><%= user.bio %></div>
+        <% } %>
+
+        <% if (!user.portfolio[0]) { //if there's no portfolio %>
+
+        <% }  else { %>
+          <h4>Latest works:</h4>
+
+          <% var i=user.portfolio.length-1; %>
+          <% if (user.portfolio[i]) { %>
+            <%//console.log(user.portfolio[i])%>
+          <%  if(user.portfolio[i].worktype===false){ // 0 --> screenshot%>
+            <%console.log("SCREENSHOT1!!!!",user.portfolio[i].value)%>
+            <img src="/<%= user.portfolio[i].value %>">
+        <%  }else{%>
+          <%console.log("LINK1!!!!",user.portfolio[i].value)%>
+            <a href="<%= user.portfolio[i].value %>"> user.portfolio[i].value </a>
+
+        <%  }%>
+          <% } %>
+          <%if(i>0){%>
+          <% if ( !user.portfolio[i-1].worktype ===true) { %>
+              <%console.log("SCREENSHOT2!!!!",user.portfolio[i-1].value)%>
+            <img src="/<%= user.portfolio[i-1].value %>">
+            <%  }else{%>
+                <%console.log("LINK2!!!",user.portfolio[i].value)%>
+              <a href="<%= user.portfolio[i-1].value %>"> <%=user.portfolio[i-1].value%> </a>
+            <%  }%>
+          <%  }%>
+  <%  }%>
+
+      </div>
+      <% }) %>
+<%}else{%>
+<div class = "alert alert-danger">
+		<h4> Unfortunately no portfolios are available at the moment :( , but perhaps you'd like to sign up and add one? </h4>
+		</div>
+
+<%}%>
+
+
+<% if (pageCount > 1) { %>
+<ul class="pagination">
+  <% if (currentPage > 1) { %>
+      <li><a href="/?page=1">&laquo;</a></li>
+  <% } %>
+  <% var i = 1;
+  if (currentPage > 5) {
+  i = +currentPage - 4;
+  } %>
+  <% if (i !== 1) { %>
+      <li class="disabled"><a href="#">...</a></li>
+  <% } %>
+  <% for (i; i<=pageCount; i++) { %>
+    <% if (currentPage == i) { %>
+        <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+    <% } else { %>
+        <li><a href="/?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if (i == (+currentPage + 4)) { %>
+        <li class="disabled"><a href="#">...</a></li>
+    <% break; } %>
+  <% } %>
+  <% if (currentPage != pageCount) { %>
+      <li><a href="/?page=<%= pageCount %>">&raquo;</a></li>
+  <% } %>
+</ul>
+<% } %>
+
+<% include _footer %>

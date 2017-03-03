@@ -1,0 +1,58 @@
+<% include _header %>
+
+<% if ((currentUser) && (currentUser.id === user.id)) { %>
+  <a href="/edit" class="pull-right">Edit your profile</a>
+<% } %>
+
+  <h1><%= user.name() %></h1>
+  <% if (user.profilePicture) { %>
+    <img src="/<%= user.profilePicture %>">
+  <% } %>
+<% if (user.bio) { %>
+  <h3> Bio: </h3>
+  <p><%= user.bio %></p>
+<% } %>
+
+  <h2>Portfolio:</h2>
+
+
+    <% if ( user.portfolio[0]) {   //if there's a portfolio  %>
+    <%  if((currentUser) && (currentUser.id === user.id)) { //if it's my profile page. %>
+         <a href="/addwork" class="pull-right">Add another work</a>
+    <% }%>
+    <h3>Student's name: <%=  user.realName %> </h3>
+
+    <% }%>
+
+  <% if (!user.portfolio[0]) { //if there's no portfolio %>
+    <% if ((currentUser) && (currentUser.id === user.id)) {// if it's my page %>
+  <br><a href="/createfolio" class="pull-left">Create your portfolio</a></br>
+      <% } %>
+  <% }  else { %>
+    <h4>Latest works:</h4>
+
+    <% var i=user.portfolio.length-1; %>
+    <% if (user.portfolio[i]) { %>
+      <%//console.log(user.portfolio[i])%>
+    <%  if(user.portfolio[i].worktype===false){ // 0 --> screenshot%>
+      <%console.log("SCREENSHOT1!!!!",user.portfolio[i].value)%>
+      <img src="/<%= user.portfolio[i].value %>">
+  <%  }else{%>
+    <%console.log("LINK1!!!!",user.portfolio[i].value)%>
+      <a href="<%= user.portfolio[i].value %>"> user.portfolio[i].value </a>
+
+  <%  }%>
+    <% } %>
+    <%if(i>0){%>
+    <% if ( !user.portfolio[i-1].worktype ===true) { %>
+        <%console.log("SCREENSHOT2!!!!",user.portfolio[i-1].value)%>
+      <img src="/<%= user.portfolio[i-1].value %>">
+      <%  }else{%>
+          <%console.log("LINK2!!!",user.portfolio[i].value)%>
+        <a href="<%= user.portfolio[i-1].value %>"> <%=user.portfolio[i-1].value%> </a>
+      <%  }%>
+    <%  }%>
+
+  <% } %>
+
+<% include _footer %>
